@@ -199,41 +199,47 @@ public class Photos extends Application implements Serializable{
 		}
 		if(addStock){
 			//Photos
-			Photo p1 = new Photo(new ArrayList<Pair<String, String>>(), "1", Calendar.getInstance(), new File(Photos.class.getResource("../stock/1.jpg").getFile()));
-			Photo p2 = new Photo(new ArrayList<Pair<String, String>>(), "2", Calendar.getInstance(), new File(Photos.class.getResource("../stock/2.jpg").getFile()));
-			Photo p3 = new Photo(new ArrayList<Pair<String, String>>(), "3", Calendar.getInstance(), new File(Photos.class.getResource("../stock/3.jpg").getFile()));
-			Photo p4 = new Photo(new ArrayList<Pair<String, String>>(), "4", Calendar.getInstance(), new File(Photos.class.getResource("../stock/4.jpg").getFile()));
-			Photo p5 = new Photo(new ArrayList<Pair<String, String>>(), "5", Calendar.getInstance(), new File(Photos.class.getResource("../stock/5.jpg").getFile()));
+			try{
+				Photo p1 = new Photo(new ArrayList<Pair<String, String>>(), "1", Calendar.getInstance(), new File(Photos.class.getResource("../stock/1.jpg").getFile()));
+				Photo p2 = new Photo(new ArrayList<Pair<String, String>>(), "2", Calendar.getInstance(), new File(Photos.class.getResource("../stock/2.jpg").getFile()));
+				Photo p3 = new Photo(new ArrayList<Pair<String, String>>(), "3", Calendar.getInstance(), new File(Photos.class.getResource("../stock/3.jpg").getFile()));
+				Photo p4 = new Photo(new ArrayList<Pair<String, String>>(), "4", Calendar.getInstance(), new File(Photos.class.getResource("../stock/4.jpg").getFile()));
+				Photo p5 = new Photo(new ArrayList<Pair<String, String>>(), "5", Calendar.getInstance(), new File(Photos.class.getResource("../stock/5.jpg").getFile()));
+				
+				SerializableAlbum albumAbdul = new SerializableAlbum(); 
+				albumAbdul.setName("Abdul's Album");
+				albumAbdul.setNumPhotos("3");
+				albumAbdul.setMinDate(Calendar.getInstance());
+				albumAbdul.setMaxDate(Calendar.getInstance());
+				albumAbdul.setMinDateString(Calendar.getInstance().getTime().toString());
+				albumAbdul.setMaxDateString(Calendar.getInstance().getTime().toString());
+				albumAbdul.getPhotoList().add(p1);
+				albumAbdul.getPhotoList().add(p2);
+				albumAbdul.getPhotoList().add(p3);
+				
+				SerializableAlbum albumFahad = new SerializableAlbum();
+				albumFahad.setName("Fahad's Album");
+				albumFahad.setNumPhotos("2");
+				albumFahad.getPhotoList().add(p4);
+				albumFahad.getPhotoList().add(p5);
+				albumFahad.setMinDate(Calendar.getInstance());
+				albumFahad.setMaxDate(Calendar.getInstance());
+				albumFahad.setMinDateString(Calendar.getInstance().getTime().toString());
+				albumFahad.setMaxDateString(Calendar.getInstance().getTime().toString());
+				
+				//Album List
+				ArrayList<SerializableAlbum> stockAlbums = new ArrayList<SerializableAlbum>();
+				stockAlbums.add(albumAbdul);
+				stockAlbums.add(albumFahad);
+				
+				//User
+				User stock = new User("stock", false, stockAlbums);
+				userBase.add(stock);
+			}
+			catch(NullPointerException e){
+				
+			}
 			
-			SerializableAlbum albumAbdul = new SerializableAlbum(); 
-			albumAbdul.setName("Abdul's Album");
-			albumAbdul.setNumPhotos("3");
-			albumAbdul.setMinDate(Calendar.getInstance());
-			albumAbdul.setMaxDate(Calendar.getInstance());
-			albumAbdul.setMinDateString(Calendar.getInstance().getTime().toString());
-			albumAbdul.setMaxDateString(Calendar.getInstance().getTime().toString());
-			albumAbdul.getPhotoList().add(p1);
-			albumAbdul.getPhotoList().add(p2);
-			albumAbdul.getPhotoList().add(p3);
-			
-			SerializableAlbum albumFahad = new SerializableAlbum();
-			albumFahad.setName("Fahad's Album");
-			albumFahad.setNumPhotos("2");
-			albumFahad.getPhotoList().add(p4);
-			albumFahad.getPhotoList().add(p5);
-			albumFahad.setMinDate(Calendar.getInstance());
-			albumFahad.setMaxDate(Calendar.getInstance());
-			albumFahad.setMinDateString(Calendar.getInstance().getTime().toString());
-			albumFahad.setMaxDateString(Calendar.getInstance().getTime().toString());
-			
-			//Album List
-			ArrayList<SerializableAlbum> stockAlbums = new ArrayList<SerializableAlbum>();
-			stockAlbums.add(albumAbdul);
-			stockAlbums.add(albumFahad);
-			
-			//User
-			User stock = new User("stock", false, stockAlbums);
-			userBase.add(stock);
 		}
 	}
 	

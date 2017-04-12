@@ -265,6 +265,9 @@ public class Control implements Serializable{
 		
 		if(search || (currentlySelectedAlbum != null && currentlySelectedAlbum.getList() != null)){
 			ImageView temp = new ImageView(openFile(photo.getImage()));	
+			if(temp.getImage() == null){
+				return null; 
+			}
 		//	photo.setImageView(temp);
 			temp.setPreserveRatio(true);
 			temp.setFitHeight(143);
